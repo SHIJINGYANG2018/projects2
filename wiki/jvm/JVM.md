@@ -136,3 +136,5 @@ jvm_memory_used_bytes{area="heap",id="Par Survivor Space"}	2770800
 所以， 伊甸园区 (Eden) 占新生代大小的 10/12， 幸存区 From 和幸存区 To 每个占新生代的 1/12 。 注意， 两个幸存区永远是一样大的
 
 最小化短命对象晋升到老年代的数量，同时也希望最小化新生代 GC 的次数和持续时间。 我们需要找到针对当前应用的折中方案， 寻找适合方案的起点是 了解当前应用中对象的年龄分布情况。
+
+https://wiki.jikexueyuan.com/project/jvm-parameter/garbage-collection.html
