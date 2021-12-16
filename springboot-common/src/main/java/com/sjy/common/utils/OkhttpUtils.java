@@ -1,5 +1,6 @@
 package com.sjy.common.utils;
 
+import io.micrometer.core.instrument.util.StringUtils;
 import okhttp3.*;
 
 import java.io.IOException;
@@ -23,6 +24,13 @@ public class OkhttpUtils {
         }
         return "";
     }
+
+    /**
+     * from
+     * @param url
+     * @param param
+     * @return
+     */
     public static String post(String url, HashMap<String,String> param){
         OkHttpClient okHttpClient = new OkHttpClient();
 
@@ -51,5 +59,35 @@ public class OkhttpUtils {
             e.printStackTrace();
         }
         return "";
+    }
+
+    /**
+     * json
+     * @param bodyJson
+     * @param url
+     * @return
+     */
+    public static String createBatch(String bodyJson, String url) {
+        OkHttpClient client = new OkHttpClient();
+        RequestBody body = RequestBody.create(MediaType.parse("application/json"), bodyJson);
+        //请求header的添加
+        Headers.Builder headlerBuilder = new Headers.Builder();
+        headlerBuilder.add("Content-Type","application/json");
+        Headers headers = headlerBuilder.build();
+        Request requestPost = new Request.Builder()
+                .url(url)
+                .post(body)
+                .headers(headers)
+                .build();
+        Response response = null;
+        String result = null;
+        try {
+            response = client.newCall(requestPost).execute();
+            if (response.body() != null) {
+                result = response.body().string();
+            }
+        } catch (IOException e) {
+        }
+        return result;
     }
 }

@@ -1,140 +1,50 @@
-### -server and -client
+# 深入理解Java虚拟机
+[学习传送门](https://wiki.jikexueyuan.com/project/java-vm/overwise.html)
+### Java各个组成部分以及功能
+![](https://wiki.jikexueyuan.com/project/java-vm/images/jvmstructure.gif)
+
+JDK >>> JRE >>> JVM
+### 技术划分
 ```text
-HotSpot JVM 提供
-我们可以用 server 、client参数来设置使用客户端、服务端的VM 
+Java Card：支持一些Java小程序（Applets）运行在小内存设备（如智能卡）上的平台。
 
-Client VM(-client)，为在客户端环境中减少启动时间而优化；
-Server VM(-server)，为在服务器环境中最大化程序执行速度而设计。
-比较：Server VM启动比Client VM慢，运行比Client VM快。
-配置文件
-若为64位操作系统
-{JRE_HOME}/lib/amd64/jvm.cfg
-若为32位操作系统
-{JRE_HOME}/lib/i386/jvm.cfg
+Java ME（Micro Edition）：支持Java程序运行在移动终端（手机、PDA）上的平台，对 Java API 有所精简，并加入了针对移动终端的支持，这个版本以前称为J2ME。
 
-谁在第一个谁就是默认
--server KNOWN
--client KNOWN
+Java SE（Standard Edition）：支持面向桌面级应用（如 Windows 下的应用程序）的 Java 平台，提供了完整的 Java 核心 API，这个版本以前称为 J2SE。
+
+Java EE（Enterprise Edition）：支持使用多层架构的企业应用（如 ERP、CRM 应用）的 Java 平台，除了提供 Java SE API 外，还对其做了大量的扩充并提供了相关的部署支持，这个版本以前称为 J2EE。
 ```
-### JVM参数分类
-### 第一类标准参数 -jar -server 
-### 第二类 X参数
-### 第三类 XX参数
+### JVM物理结构
 
-### 打印所有 XX 参数及值
-#### -XX:+PrintFlagsFinal and -XX:+PrintFlagsInitial
-```shell
-java -server -XX:+UnlockExperimentalVMOptions -XX:+UnlockDiagnosticVMOptions -XX:+PrintFlagsFinal Main
-```
-```text
-uintx InitialHeapSize                     := 57505088         {product}
-uintx MaxHeapSize                         := 920649728        {product}
-uintx ParallelGCThreads                   := 4                {product}
- bool PrintFlagsFinal                     := true             {product}
- bool UseParallelGC                       := true             {product}
-```
-:=” 表明了参数被用户或者 JVM 赋值了。
+![](https://wiki.jikexueyuan.com/project/java-vm/images/jvm.gif)
 
-#### -XX:+PrintCommandLineFlags
-这个参数让 JVM 打印出那些已经被用户或者 JVM 设置过的详细的 XX 参数的名称和值。
-```text
->java -server  -XX:+PrintCommandLineFlags  Main
--XX:InitialHeapSize=263597440 -XX:MaxHeapSize=4217559040 -XX:+PrintCommandLineFlags -XX:+UseCompressedClassPointers -XX:+UseCompressedOops -XX:-UseLargePagesIndividualAllocation -XX:+UseParallelGC
-hello world
 
-```
+### What is JVM
 
-### -Xms and -Xmx (or: -XX:InitialHeapSize and -XX:MaxHeapSize)
+jvm 是java的核心与基础，在java编译器和os系统之间的虚拟处理器，他是一种基于下层的操作系统和硬件平台合并利用软件方法来实现的抽象虚拟机，可以在上面执行Java字节码程序
 
-下面的命令启动了一个初始化堆内存为 128M，最大堆内存为 2G，名叫 “MyApp” 的 Java 应用程序。
-```shell
-java -Xms128m -Xmx2g MyApp
-```
+Java 编译器只需面向 JVM，生成 JVM 能理解的代码或字节码文件。Java 源文件经编译器，编译成字节码程序，通过 JVM 将每一条指令翻译成不同平台机器码，通过特定平台运行。
 
-### -XX:+HeapDumpOnOutOfMemoryError and -XX:HeapDumpPath
-当发生内存溢出，堆内存溢出的快照
+简单的说，JVM 就相当于一台柴油机,它只能用 Java (柴油)运行,JVM 就是 Java 的虚拟机,有了 JVM 才能运行 Java 程序
 
-默认情况下，堆内存快照会保存在 JVM 的启动目录下名为 java_pid.hprof 的文件里
-也可以使用 HeapDumpPath来制定输出的路径
+## Java 代码编译和执行的整个过程
+`Java 代码编译是由 Java 源码编译器来完成`
+![](https://wiki.jikexueyuan.com/project/java-vm/images/javadebug.gif)
+`Java 字节码的执行是由 JVM 执行引擎来完成`
+![](https://wiki.jikexueyuan.com/project/java-vm/images/jvmdebug.gif)
 
-```shell
-java -Xms5m -Xmx10m -XX:+PrintCommandLineFlags -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=D://xxxx Main
-```
-### -XX:OnOutOfMemoryError
-当发生内存溢出， 可以执行一些指令。运行一个脚本,去上传、清理hprof文件
-```shell
-java -Xms5m -Xmx10m -XX:+PrintCommandLineFlags -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=D://xxxx -XX:OnOutOfMemoryError=D://xxxx//xxxx.bat  Main
-```
-### -XX:PermSize and -XX:MaxPermSize
-永久代是堆内存中一块独立的区域，它包含了所有的jvm加载类的对象表示。
-```shell
-java -XX:PermSize=128m -XX:MaxPermSize=256m Main
-```
-这里设置的永久代大小并不会被包括在使用参数 - XX:MaxHeapSize 设置的堆内存大小中。
-也就是说 通过 - XX:MaxPermSize 设置的永久代内存可能会需要由参数 - XX:MaxHeapSize 设置的堆内存以外的更多的一些堆内存
+### 代码编译、执行三大步骤机制
+    * Java源码编译
+    * 类加载
+    * 类执行
+#### Java程序编译机制
+    * 分析和输入到符号表
+    * 注解处理
+    * 语义分析和生成class文件
 
-### -XX:InitialCodeCacheSize and -XX:ReservedCodeCacheSize
-JVM 一个有趣的，但往往被忽视的内存区域是 “代码缓存”，它是用来存储已编译方法生成的本地代码。代码缓存确实很少引起性能问题，
-但是一旦发生其影响可能是毁灭性的。如果代码缓存被占满，JVM 会打印出一条警告消息，并切换到 interpreted-only 模式：JIT 编译器被停用，
-字节码将不再会被编译成机器码。因此，应用程序将继续运行，但运行速度会降低一个数量级，直到有人注意到这个问题。就像其他内存区域一样，
-我们可以自定义代码缓存的大小。相关的参数是 - XX:InitialCodeCacheSize 和 - XX:ReservedCodeCacheSize，它们的参数和上面介绍的参数一样，都是字节值。
+![](https://wiki.jikexueyuan.com/project/java-vm/images/workflow.gif)
 
-### -XX:+UseCodeCacheFlushing
-如果代码缓存不断增长，例如，因为热部署引起的内存泄漏，那么提高代码的缓存大小只会延缓其发生溢出。
-为了避免这种情况的发生，我们可以尝试一个有趣的新参数：当代码缓存被填满时让 JVM 放弃一些编译代码。
-通过使用 - XX:+UseCodeCacheFlushing 这个参数，我们至少可以避免当代码缓存被填满的时候 JVM 切换到 interpreted-only 模式。
-不过，我仍建议尽快解决代码缓存问题发生的根本原因，如找出内存泄漏并修复它。
+#### 类加载机制
 
-## 新生代垃圾回收
-新生代相关的 JVM 参数。
-新生代存在的唯一理由是优化垃圾回收（GC）的性能
-把堆划分成新生代、老生代的好处:
-简化了新对象的分配（只在新生代分配），可以更有效的清除不再需要的对象，（新生代、老生代使用的不同的GC算法）
+#### 类执行机制
 
-新生代又分为三个区域
-最大的Eden（伊甸园区）
-FROM幸存区survivor
-TO幸存区survivor
-按照规定，新对象首先分配在Eden区域（如果对象过大，会直接分配到老年代中）
-在GC中，Eden中的对象被移动到survivor中,直至对象满足一定的年级（定义熬过GC的次数，），会被移动到老年代
-![](https://wiki.jikexueyuan.com/project/jvm-parameter/images/1.png)
-上图演示 GC 过程，黄色表示死对象，绿色表示剩余空间，红色表示幸存对象
-**GC复制算法**  
-就是指把某个空间里的活动对象复制到其它空间，把原空间里的所有对象都回收掉。在此，将复制活动对象的原空间称为From空间，将粘贴活动对象的新空间称为To空间。
-
-基于大多数新生对象都会在 GC 中被收回的假设。新生代的 GC 使用复制算法。
-在GC前 TO幸存区是保持情况的状态，对象保存在 Eden和From中，
-GC运行时，Eden中的幸存对象被复制到To幸存区。针对From中的幸存对象，会考虑对象的年龄，如果年龄没达到阙值（tenuring threshold），对象会复制到To幸存区，
-如果达到阀值对象被复制到老年代。复制阶段完成后，Eden 和 From 幸存区中只保存死对象。可视为清空，
-
-如果在复制过程中 To 幸存区被填满了，剩余的对象会被复制到老年代中。最后 From 幸存区和 To 幸存区会调换下名字，在下次 GC 时，To 幸存区会成为 From 幸存区
-jvm 堆监控数据
-```
-jvm_memory_used_bytes{area="heap",id="CMS Old Gen"}	864453920
-jvm_memory_used_bytes{area="heap",id="Par Eden Space"}	3148248
-jvm_memory_used_bytes{area="heap",id="Par Survivor Space"}	2770800
-
-```
-
-### -XX:NewSize and -XX:MaxNewSize
-就像可以通过参数 (-Xms and -Xmx) 指定堆大小一样，可以通过参数指定新生代大小。
-设置 XX:MaxNewSize 参数时，应该考虑到新生代只是整个堆的一部分，新生代设置的越大，老年代区域就会减少。
-一般不允许新生代比老年代还大，因为要考虑 GC 时最坏情况，所有对象都晋升到老年代。(译者: 会发生 OOM 错误) -XX:MaxNewSize 最大可以设置为 - Xmx/2
-
-### -XX:NewRatio
-可以设置新生代和老年代的相对大小。这种方式的优点是新生代大小会随着整个堆大小动态扩展。参数 -XX:NewRatio 设置老年代与新生代的比例。例如 -XX:NewRatio=3 指定老年代 / 新生代为 3/1。 老年代占堆大小的 3/4，新生代占 1/4 。
-
-```shell
- java -XX:NewSize=32m -XX:MaxNewSize=512m -XX:NewRatio=3 MyApp
-```
-以上设置，JVM 会尝试为新生代分配四分之一的堆大小，但不会小于 32MB 或大于 521MB
-
-### -XX:SurvivorRatio
-参数 -XX:SurvivorRatio 与 -XX:NewRatio 类似，作用于新生代内部区域。
--XX:SurvivorRatio 指定伊甸园区 (Eden) 与幸存区大小比例。 
-例如， -XX:SurvivorRatio=10 表示伊甸园区 (Eden) 是 幸存区 To 大小的 10 倍 (也是幸存区 From 的 10 倍)。 
-所以， 伊甸园区 (Eden) 占新生代大小的 10/12， 幸存区 From 和幸存区 To 每个占新生代的 1/12 。 注意， 两个幸存区永远是一样大的
-
-最小化短命对象晋升到老年代的数量，同时也希望最小化新生代 GC 的次数和持续时间。 我们需要找到针对当前应用的折中方案， 寻找适合方案的起点是 了解当前应用中对象的年龄分布情况。
-
-https://wiki.jikexueyuan.com/project/jvm-parameter/garbage-collection.html
