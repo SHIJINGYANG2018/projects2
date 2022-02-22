@@ -50,6 +50,9 @@ public class Test {
        long MAX_NEXT = 0b11111111L;
 
         System.out.println(MAX_NEXT);
+
+        System.out.println(Long.toBinaryString(Long.MAX_VALUE).length());
+        System.out.println(Long.toBinaryString(Long.MIN_VALUE).length());
     }
 
 

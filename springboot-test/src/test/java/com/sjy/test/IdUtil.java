@@ -25,7 +25,7 @@ import java.util.regex.Pattern;
  * <p>
  * Maximum NT = ----- -------- -------- -------- ---11111_11111111_ = 65535
  * <p>
- * Maximum SH = ----- -------- -------- -------- -------- -------- 11111111 = 31
+ * Maximum SH = ----- -------- -------- -------- -------- -------- 11111111 = 255
  * <p>
  * It can generate 64k unique id per IP and up to 2106-02-07T06:28:15Z.
  * Snowflake算法
