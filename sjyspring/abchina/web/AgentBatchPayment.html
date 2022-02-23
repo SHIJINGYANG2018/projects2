@@ -1,0 +1,264 @@
+<html>
+<head>
+    <title>ũ������֧��ƽ̨-�̻��ӿ�ʾ��-������Ȩ�ۿ�</title>
+</head>
+
+<script language="javascript">
+    function formatIndex(index) {
+        if (index < 10)
+            return "00" + index;
+        else if (index >= 10 && index < 10000)
+            return "0" + index;
+        else
+            return index;
+    }
+
+    function addLine() {
+
+        var count = form1.AgentCount.value;
+        if (isNaN(count)) {
+            alert("�����ܱ������������֣�");
+            return false;
+        }
+        count = parseInt(count);
+        for (var i = 1; i <= count; i++) {
+            var index = formatIndex(i);
+            var row = batch.insertRow();
+            for (var j = 0; j < 28; j++) {
+                var col = row.insertCell();
+                switch (j) {
+                    case 0:
+                        col.align = "left";
+                        col.height = "30";
+                        col.innerHTML = "<input type=\"text\" name=\"SeqNo\" style=\"width:95%\" value=\"" + i + "\">";
+                        break;
+                    case 1:
+                        col.align = "center";
+                        col.innerHTML = "<input type=\"text\" name=\"OrderNo\" style=\"width:95%\" value=\"" + form1.BatchNo.value + index + "\">";
+                        break;
+                    case 2:
+                        col.align = "center";
+                        col.innerHTML = "<input type=\"text\" name=\"AgentSignNo\" style=\"width:95%\" value=\"" + i + "\">";
+                        break;
+                    case 3:
+                        col.align = "center";
+                        col.innerHTML = "<input type=\"text\" name=\"CardNo\" style=\"width:95%\" value=\"5443333333333333\">";
+                        break;
+                    case 4:
+                        col.align = "center";
+                        col.innerHTML = "<input type=\"text\" name=\"OrderAmount\" style=\"width:95%\" value=\"0.01\">";
+                        break;
+                    case 5:
+                        col.align = "center";
+                        col.innerHTML = "<input type=\"text\" name=\"ReceiverAddress\" style=\"width:95%\" value=\"����\">";
+                        break;
+                    case 6:
+                        col.align = "center";
+                        col.innerHTML = "<input type=\"text\" name=\"Fee\" style=\"width:95%\" value=\"0.01\">";
+                        break;
+                    case 7:
+                        col.align = "center";
+                        col.innerHTML = "<input type=\"text\" name=\"CertificateNo\" style=\"width:95%\" value=\"370622222222222222\">";
+                        break;
+                    case 8:
+                        col.align = "center";
+                        col.innerHTML = "<input type=\"text\" name=\"InstallmentMark\" style=\"width:95%;\" value=\"0\">";
+                        break;
+                    case 9:
+                        col.align = "center";
+                        col.innerHTML = "<input type=\"text\" name=\"InstallmentCode\" style=\"width:95%;\" value=\"\">";
+                        break;
+                    case 10:
+                        col.align = "center";
+                        col.innerHTML = "<input type=\"text\" name=\"InstallmentNum\" style=\"width:95%;\" value=\"\">";
+                        break;
+                    case 11:
+                        col.align = "center";
+                        col.innerHTML = "<input type=\"text\" name=\"CommodityType\" style=\"width:95%\" value=\"0101\">";
+                        break;
+                    case 12:
+                        col.align = "center";
+                        col.innerHTML = "<input type=\"text\" name=\"SubMerName\" style=\"width:95%\" value=\"�����̻�\"" + index + "\">";
+                        break;
+                    case 13:
+                        col.align = "center";
+                        col.innerHTML = "<input type=\"text\" name=\"SubMerId\" style=\"width:95%\" value=\"43424242\">";
+                        break;
+                    case 14:
+                        col.align = "center";
+                        col.innerHTML = "<input type=\"text\" name=\"SubMerMCC\" style=\"width:95%\" value=\"1234\">";
+                        break;
+                    case 15:
+                        col.align = "center";
+                        col.innerHTML = "<input type=\"text\" name=\"SubMerchantRemarks\" style=\"width:95%\" value=\"�����̻��˵�\">";
+                        break;
+                    case 16:
+                        col.align = "center";
+                        col.innerHTML = "<input type=\"text\" name=\"ProductID\" style=\"width:95%\" value=\"IP00" + i + "\">";
+                        break;
+                    case 17:
+                        col.align = "center";
+                        col.innerHTML = "<input type=\"text\" name=\"ProductName\" style=\"width:95%\" value=\"������Ʒ\">";
+                        break;
+                    case 18:
+                        col.align = "center";
+                        col.innerHTML = "<input type=\"text\" name=\"UnitPrice\" style=\"width:95%\" value=\"1.00\">";
+                        break;
+                    case 19:
+                        col.align = "center";
+                        col.innerHTML = "<input type=\"text\" name=\"Qty\" style=\"width:95%\" value=\"" + index + "\">";
+                        break;
+                    case 20:
+                        col.align = "center";
+                        col.innerHTML = "<input type=\"text\" name=\"ProductRemarks\" style=\"width:95%\" value=\"\">";
+                        break;
+                    case 21:
+                        col.align = "center";
+                        col.innerHTML = "<input type=\"text\" name=\"ProductType\" style=\"width:95%\" value=\"1\">";
+                        break;
+                    case 22:
+                        col.align = "center";
+                        col.innerHTML = "<input type=\"text\" name=\"ProductDiscount\" style=\"width:95%\" value=\"1\">";
+                        break;
+                    case 23:
+                        col.align = "center";
+                        col.innerHTML = "<input type=\"text\" name=\"ProductExpiredDate\" style=\"width:95%\" value=\"\">";
+                        break;
+                    case 24:
+                        col.align = "center";
+                        col.innerHTML = "<input type=\"text\" name=\"BuyIP\" style=\"width:95%\" value=\"\">";
+                        break;
+                    case 25:
+                        col.align = "center";
+                        col.innerHTML = "<input type=\"text\" name=\"IsBreakAccount\" style=\"width:95%\" value=\"0\">";
+                        break;
+                    case 26:
+                        col.align = "center";
+                        col.innerHTML = "<input type=\"text\" name=\"SplitAccTemplate\" style=\"width:95%\" value=\"\">";
+                        break;
+                    case 27:
+                        col.align = "center";
+                        col.innerHTML = "<input type=\"text\" name=\"Remark\" style=\"width:95%\" value=\"\">";
+                        break;
+                }
+
+            }
+        }
+        form1.payment.disabled = "";
+    }
+
+    function submitFun() {
+
+        form1.submit();
+    }
+</script>
+
+<body bgcolor='#FFFFFF' text='#000000' link='#0000FF' vlink='#0000FF' alink='#FF0000'>
+<center>
+    ������Ȩ�ۿ�
+</center>
+<form name='form1' action='AgentBatchPayment.jsp' method='POST'>
+    <table width="100%">
+        <tr>
+            <td>���α��</td>
+            <td>
+                <input name='BatchNo' value='0001'/>*����
+            </td>
+        </tr>
+        <tr>
+            <td>��������</td>
+            <td>
+                <input name='BatchDate' value='2014/12/23'/>��YYYY/MM/DD��*����
+            </td>
+        </tr>
+        <tr>
+            <td>����ʱ��</td>
+            <td>
+                <input name='BatchTime' value='11:55:30'/>��HH:MM:SS��*���䣬
+            </td>
+        </tr>
+        <tr>
+            <td>�����ܱ���</td>
+            <td>
+                <input name='AgentCount' value='10'/>
+                *����
+            </td>
+        </tr>
+        <tr>
+            <td>�����ܽ��</td>
+            <td>
+                <input name='AgentAmount' value='10.00'/>
+                *����
+            </td>
+            <td>
+
+        <tr>
+            <td>�տ�˺�
+            </td>
+            <td>
+                <input name='ReceiveAccount' value=''/>ѡ��
+            </td>
+        </tr>
+        <tr>
+            <td>�տ����
+            </td>
+            <td>
+                <input name='ReceiveAccName' value=''/>ѡ��
+            </td>
+        </tr>
+        <tr>
+            <td>���ױ���
+            </td>
+            <td>
+                <input name='CurrencyCode' value='156'/>156:�����,*����
+            </td>
+        </tr>
+        <td><input type='button' value=' ��� ' name="AddOrder" onclick="addLine()"/></td>
+        <tr>
+            <td colspan="2">
+                <table border="1" style="font-size: 17px;" width="100%" id="batch">
+                    <tr>
+                        <td align="center">���</td>
+                        <td align="center">���ױ��</td>
+                        <td align="center">ǩԼЭ���</td>
+                        <td align="center">�˺�</td>
+                        <td align="center">���</td>
+                        <td align="center">�ջ��˵�ַ</td>
+                        <td align="center">�����ѽ��</td>
+                        <td align="center">֤������</td>
+                        <td align="center">���ڱ�ʶ</td>
+                        <td align="center">���ڴ���</td>
+                        <td align="center">���ڴ���</td>
+                        <td align="center">��Ʒ����</td>
+                        <td align="center">�����̻�����</td>
+                        <td align="center">�����̻�����</td>
+                        <td align="center">�����̻�MCC��</td>
+                        <td align="center">�����̻���ע��</td>
+                        <td align="center">��Ʒ����</td>
+                        <td align="center">��Ʒ����</td>
+                        <td align="center">��Ʒ�ܼ�</td>
+                        <td align="center">��Ʒ����</td>
+                        <td align="center">��Ʒ��ע��</td>
+                        <td align="center">��Ʒ����</td>
+                        <td align="center">��Ʒ�ۿ�</td>
+                        <td align="center">��Ʒ��Ч��</td>
+                        <td align="center">�ͻ�IP</td>
+                        <td align="center">�����Ƿ����</td>
+                        <td align="center">����ģ����</td>
+                        <td align="center">��ע</td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+
+
+        <tr>
+            <td colspan="2">
+                <input type='button' value='�����ύ' name="payment" disabled="disabled" onclick="submitFun()"></td>
+        </tr>
+    </table>
+</form>
+<center>
+    <a href='Merchant.html'>���̻���ҳ</a></center>
+</body>
+</html>

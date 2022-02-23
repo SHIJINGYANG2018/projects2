@@ -1,0 +1,35 @@
+<HTML>
+<HEAD><TITLE>ũ������֧��ƽ̨-�̻��ӿڷ���-������ѯ</TITLE></HEAD>
+<BODY BGCOLOR='#FFFFFF' TEXT='#000000' LINK='#0000FF' VLINK='#0000FF' ALINK='#FF0000'>
+<CENTER>���ײ�ѯ</CENTER>
+<FORM name='form1' action='MerchantQueryOrder.jsp' method='POST'>
+    <TABLE>
+        <TR>
+            <TD>��������</TD>
+            <TD><select name="PayTypeID">
+                <option value="ImmediatePay">ֱ��֧��</option>
+                <option value="PreAuthPay">Ԥ��Ȩ֧��</option>
+                <option value="DividedPay">����֧��</option>
+                <option value="AgentPay">��Ȩ֧��</option>
+                <option value="Refund">�˿�</option>
+                <option value="DefrayPay">����</option>
+                <option value="PreAuthed">Ԥ��Ȩȷ��</option>
+                <option value="PreAuthCancel">Ԥ��Ȩȡ��</option>
+            </select>
+            </TD>
+        </TR>
+        <TR>
+            <TD>OrderNo</TD>
+            <TD><INPUT NAME='OrderNo' VALUE='ON200306300001'></TD>
+        </TR>
+        <TR>
+            <TD>QueryType��0��״̬��ѯ�� 1����ϸ��ѯ��</TD>
+            <TD><INPUT NAME='QueryType' VALUE='0'></TD>
+        </TR>
+        <TR>
+            <TD colspan=2><INPUT type='submit' value='�ύ'>
+    </TABLE>
+</FORM>
+<CENTER><a href='Merchant.html'>���̻���ҳ</a></CENTER>
+</BODY>
+</HTML>

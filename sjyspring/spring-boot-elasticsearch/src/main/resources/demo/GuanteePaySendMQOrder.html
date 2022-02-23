@@ -1,0 +1,87 @@
+<html>
+<head>
+    <title>ũ������֧��ƽ̨-�̻��ӿڷ���-����ȷ������</title>
+</head>
+<script language="javascript" type="text/javascript">
+
+    function addLine() {
+        var row = account.insertRow();
+        for (var j = 0; j < 2; j++) {
+            var col = row.insertCell();
+            switch (j) {
+                case 0:
+                    col.align = "center";
+                    col.innerHTML = "<input type=\"text\" name=\"SplitMerchantID\" style=\"width:95%\" value=\"\">";
+                    break;
+                case 1:
+                    col.align = "center";
+                    col.innerHTML = "<input type=\"text\" name=\"SplitAmount\" style=\"width:95%\" value=\"\">";
+                    break;
+            }
+
+        }
+
+        form1.button.disabled = "";
+    }
+
+</script>
+<body style="font-size: 14px;">
+<center>����ȷ������</center>
+<form id="form1" action='GuanteePaySendMQOrder.jsp' method="post">
+    <br/>
+    <table>
+
+        <tr>
+            <td>֧��������</td>
+            <td>
+                <input name='OriginalOrderNo' value='ON20140923010'/>*����
+            </td>
+        </tr>
+        <tr>
+            <td>����ȷ�Ͻ��ױ��</td>
+            <td>
+                <input name='ConfirmedOrderNo' value='ON20140923012_new'/>*����
+            </td>
+        </tr>
+
+        <tr>
+            <td>���׽��
+            </td>
+            <td>
+                <input name='OrderAmount' value='1'/>*���䣬����С�������λ����
+            </td>
+        </tr>
+        <tr>
+            <td>�Ƿ����</td>
+            <td>
+                <input name='AdvancedFund' value='0'/>*ѡ�� 1�����ʣ�0�ǵ���
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <table border="1" style="font-size: 12px;" width="50%" id="account">
+                    <tr>
+                        <td width="12%" align="center">�����̻����</td>
+                        <td width="12%" align="center">���˽��</td>
+                    <tr>
+                </table>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <input type='button' value='����' name="add" onclick="addLine()"></td>
+
+        </tr>
+        <tr>
+            <td colspan="2">
+        <tr>
+            <td colspan="2">
+                <input type="submit" value="�ύҳ������"/>
+
+            </td>
+        </tr>
+    </table>
+</form>
+<a href='Merchant.html'>���̻���ҳ</a>
+</body>
+</html>

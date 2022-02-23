@@ -1,0 +1,183 @@
+<html>
+<head>
+    <title>ũ������֧��ƽ̨-�̻��ӿڷ���-֧������</title>
+</head>
+<script language="javascript" type="text/javascript">
+
+
+    function SelectedIndexChanged() {
+        var paytypeid = document.getElementById("PayTypeID").value;
+        if (paytypeid == "ImmediatePay") {
+            installmentCode.style.display = "none";
+            installmentNum.style.display = "none";
+        } else if (paytypeid == "PreAuthPay") {
+            installmentCode.style.display = "none";
+            installmentNum.style.display = "none";
+        } else if (paytypeid == "DividedPay") {
+            installmentCode.style.display = "inline";
+            installmentNum.style.display = "inline";
+
+        }
+    }
+
+    function CheckValue() {
+        var paymenttype = document.getElementById("PaymentType").value;
+        var paymentlinktype = document.getElementById("PaymentLinkType").value;
+        if (paymenttype == "6" && paymentlinktype == "2") {
+            UnionPayLinkType.style.display = "inline";
+        } else {
+            UnionPayLinkType.style.display = "none";
+        }
+    }
+
+</script>
+<body bgcolor='#FFFFFF' value='#000000' link='#0000FF' vlink='#0000FF' alink='#FF0000'>
+<form name="form1" action='MerchantPaymentIE.jsp' method="post">
+    <table>
+        <tr>
+            <td>��������</td>
+            <td>
+                <select name="PayTypeID" onclick="SelectedIndexChanged()">
+                    <option value="ImmediatePay">ֱ��֧��</option>
+                    <option value="PreAuthPay">Ԥ��Ȩ֧��</option>
+                    <option value="DividedPay">����֧��</option>
+                </select>*����
+            <td>
+        </tr>
+        <tr>
+            <td>��������</td>
+            <td><input name='OrderDate' value='2014/09/24'>��YYYY/MM/DD��</td>
+        </tr>
+        <tr>
+            <td>����ʱ��</td>
+            <td><input name='OrderTime' value='11:55:30'>��HH:MM:SS��</td>
+        </tr>
+        <tr>
+            <td>����֧����Ч��
+            </td>
+            <td>
+                <input name='orderTimeoutDate' value='20141019104901'/>��ȷ���룬ѡ��
+            </td>
+        </tr>
+        <tr>
+            <td>���ױ��</td>
+            <td><input name='OrderNo' value='ON20140924004'/>����</td>
+        </tr>
+        <tr>
+        <tr>
+            <td>���ױ���</td>
+            <td><input name='CurrencyCode' value='156'/>156:�����,*����</td>
+        </tr>
+        <tr>
+            <td>���׽��</td>
+            <td><input name='PaymentRequestAmount' value='2.00'/>����С�������λ����,*����</td>
+        </tr>
+        <tr>
+            <td>�����ѽ��</td>
+            <td><input name='Fee' value=''/>����С�������λ����,ѡ��</td>
+        </tr>
+        <tr>
+            <td>ָ��֧���˻�</td>
+            <td><input name='AccountNo' value=''/>ѡ��</td>
+        </tr>
+        <tr>
+            <td>����˵��</td>
+            <td><input name='OrderDesc' value=''/>ѡ��</td>
+        </tr>
+        <tr>
+            <td>������ַ</td>
+            <td><input name='OrderURL' value=''/>ѡ��</td>
+        </tr>
+        <tr>
+            <td>�ջ���ַ</td>
+            <td><input name='ReceiverAddress' value='����'/>ѡ��</td>
+        </tr>
+        <tr>
+            <td>���ڱ�ʶ</td>
+            <td><input name='InstallmentMark' value='0'/>1�����ڣ�0����*����</td>
+        </tr>
+        <tr id="installmentCode" style="display: none;">
+            <td>���ڴ���</td>
+            <td><input name='InstallmentCode' value=''/>����ʱ����</td>
+        </tr>
+        <tr id="installmentNum" style="display: none;">
+            <td>��������</td>
+            <td><input name='InstallmentNum' value=''/>0-99,����ʱ����</td>
+        </tr>
+        <tr>
+            <td>��Ʒ����</td>
+            <td><input name='CommodityType' value='0101'/></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>
+                <br>0101:֧���˻���ֵ
+                <br>0201:������,0202:��ͳ��,0203:ʵ����
+                <br>0301:����ת��,0302:����ת��
+                <br>0401:ˮ��,0402:���,0403:ú����,0404:���ߵ��ӷ�,0405:ͨѶ��,0406:��ҵ��,0407:���շ�,0408:��������,0409:˰��,0410:ѧ��,0499:����
+                <br>0501:����,0502:��Ʋ�Ʒ,0599:����, *����
+            </td>
+        </tr>
+        <tr>
+            <td>�ͻ�����IP</td>
+            <td><input name='BuyIP' value=''/>ѡ��</td>
+        </tr>
+        <tr>
+            <td>��������ʱ��</td>
+            <td><input name='ExpiredDate' value='30'/>��λ:�죬ѡ��</td>
+        </tr>
+        <tr>
+            <td>֧���˻�����</td>
+            <td><input name='PaymentType' value='A'/>1��ũ�п�֧�� 2�����ʿ�֧�� 3��ũ�д��ǿ�֧�� 5:���ڵ�������B2C����֧��
+                A:ũ�п�֧����ʽ�ϲ�(1��3) 6����������֧����7:�Թ��� *����
+            </td>
+        </tr>
+        <tr>
+            <td>��������</td>
+            <td><input name='PaymentLinkType' value='1'/>1��internet������� 2���ֻ�������� 3:���ֵ����������
+                4:���ܿͻ��ˣ�*����
+            </td>
+        </tr>
+        <tr id="UnionPayLinkType" style="display: none;">
+            <td>���������ƶ�֧�����뷽ʽ</td>
+            <td><input name='UnionPayLinkType' value='0'/>0��ҳ�����
+                �����ѡ���֧���ʻ�����Ϊ6(��������֧��)��������Ϊ2(�ֻ��������)����Ҫ����
+            </td>
+        </tr>
+        <tr>
+            <td>�տ�˺�</td>
+            <td><input name='ReceiveAccount' value=''/>ѡ��</td>
+        </tr>
+        <tr>
+            <td>�տ����</td>
+            <td><input name='ReceiveAccName' value=''/>ѡ��</td>
+        </tr>
+        <tr>
+            <td>֪ͨ��ʽ</td>
+            <td><input name='NotifyType' value='0'/>0��URLҳ��֪ͨ 1��������֪ͨ��*����</td>
+        </tr>
+        <tr>
+            <td>֪ͨURL��ַ</td>
+            <td><input name='ResultNotifyURL' value='http://yourwebsite/appname/MerchantResult.jsp'/>*����</td>
+        </tr>
+        <tr>
+            <td>����</td>
+            <td><input name='MerchantRemarks' value=''/>������100���ַ���ѡ��</td>
+        </tr>
+        <tr>
+            <td>�����Ƿ����</td>
+            <td><input name='IsBreakAccount' value='0'/>0:��1:�ǣ�*����</td>
+        </tr>
+        <tr>
+            <td>����ģ����</td>
+            <td><input name='SplitAccTemplate' value=''/>ѡ��</td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <input type="submit">
+    </table>
+</form>
+<center>
+    <a href='Merchant.html'>���̻���ҳ</a></center>
+</body>
+</html>

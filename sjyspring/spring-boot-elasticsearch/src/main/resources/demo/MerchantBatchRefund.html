@@ -1,0 +1,136 @@
+<html>
+<head>
+    <title>ũ������֧��ƽ̨-�̻��ӿڷ���-�����˿�</title>
+</head>
+<script language="javascript">
+    function formatIndex(index) {
+        if (index < 10)
+            return "00" + index;
+        else if (index >= 10 && index < 100)
+            return "0" + index;
+        else
+            return index;
+    }
+
+    function addLine() {
+        var count = form1.TotalCount.value;
+        if (isNaN(count)) {
+            alert("�����ܱ������������֣�");
+            return false;
+        }
+        count = parseInt(count);
+        for (var i = 1; i <= count; i++) {
+            var index = formatIndex(i);
+            var row = batch.insertRow();
+            for (var j = 0; j < 6; j++) {
+                var col = row.insertCell();
+                switch (j) {
+                    case 0 :
+                        col.align = "left";
+                        col.height = "30";
+                        col.innerHTML = index;
+                        break;
+                    case 1 :
+                        col.align = "center";
+                        col.innerHTML = "<input type=\"text\" name=\"txtOrderNo\" style=\"width:95%\" value=\"ON200905010001\">";
+                        break;
+                    case 2 :
+                        col.align = "center";
+                        col.innerHTML = "<input type=\"text\" name=\"txtNewOrderNo\" style=\"width:95%\" value=\"ON200905010001new\">";
+                        break;
+                    case 3 :
+                        col.align = "center";
+                        col.innerHTML = "<input type=\"text\" name=\"txtCurrencyCode\" style=\"width:95%\" value=\"156\">";
+                        break;
+                    case 4 :
+                        col.align = "center";
+                        col.innerHTML = "<input type=\"text\" name=\"txtRefundAmount\" style=\"width:95%\" value=\"0.01\">";
+                        break;
+                    case 5 :
+                        col.align = "center";
+                        col.innerHTML = "<input type=\"text\" name=\"txtRemark\" style=\"width:95%\" value=\"\">";
+                        break;
+                }
+
+            }
+        }
+        form1.payment.disabled = "";
+    }
+
+    function submitFun() {
+        form1.submit();
+    }
+</script>
+<body style="font-size: 14px;">
+<center>�����˿�</center>
+<form id="form1" action='MerchantBatchRefund.jsp' method="post">
+    <div style="color: Red; margin-bottom: 5px;"></div>
+    <br/>
+    <table>
+        <tr>
+            <td>��������</td>
+            <td>
+                <input name='txtBatchDate' value='2014/12/23'/>��YYYY/MM/DD��*����
+            </td>
+        </tr>
+        <tr>
+            <td>����ʱ��</td>
+            <td>
+                <input name='txtBatchTime' value='11:55:30'/>��HH:MM:SS��*����
+            </td>
+        </tr>
+        <tr>
+            <td>�̻��˿��˺�</td>
+            <td>
+                <input name='txtMerRefundAccountNo' value=''/>ѡ��
+            </td>
+        </tr>
+        <tr>
+            <td>�̻��˿���</td>
+            <td>
+                <input name='txtMerRefundAccountName' value=''/>ѡ��
+            </td>
+        </tr>
+        <tr>
+            <td>�������</td>
+            <td>
+                <input name='txtBatchNo' value='0001'/>*����
+            </td>
+        </tr>
+        <tr>
+            <td>�����ܱ���</td>
+            <td>
+                <input name='TotalCount' value='10'>*����
+            </td>
+        </tr>
+        <tr>
+            <td>�����ܽ��</td>
+            <td>
+                <input name='TotalAmount' value='0.10'>*����
+            </td>
+            <td>
+                <input type='button' value=' ��� ' name="AddOrder" onclick="addLine()"></td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <table border="1" style="font-size: 12px;" width="100%" id="batch">
+                    <tr>
+                        <td width="15%" align="center">���</td>
+                        <td width="15%" align="center">ԭ���ױ��</td>
+                        <td width="15%" align="center">���ױ��</td>
+                        <td width="15%" align="center">���ױ���</td>
+                        <td width="15%" align="center">���׽��</td>
+                        <td width="15%" align="center">��ע</td>
+                    <tr>
+                </table>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <input type='button' value='�����ύ' name="payment" disabled="disabled" onclick="submitFun()"></td>
+        </tr>
+    </table>
+</form>
+<center><a href='Merchant.html'>���̻���ҳ</a></center>
+</body>
+</html>

@@ -1,0 +1,106 @@
+<html>
+<head>
+    <title>ũ������֧��ƽ̨-�̻��ӿڷ���-��ֵ����</title>
+</head>
+<script language="javascript" type="text/javascript">
+
+
+    function SelectedIndexChanged() {
+        var paytypeid = document.getElementById("PayTypeID").value;
+        if (paytypeid == "ImmediatePay") {
+            installmentCode.style.display = "none";
+            installmentNum.style.display = "none";
+        } else if (paytypeid == "PreAuthPay") {
+            installmentCode.style.display = "none";
+            installmentNum.style.display = "none";
+        } else if (paytypeid == "DividedPay") {
+            installmentCode.style.display = "inline";
+            installmentNum.style.display = "inline";
+
+        }
+    }
+
+    function CheckValue() {
+        var paymenttype = document.getElementById("PaymentType").value;
+        var paymentlinktype = document.getElementById("PaymentLinkType").value;
+        if (paymenttype == "6" && paymentlinktype == "2") {
+            UnionPayLinkType.style.display = "inline";
+        } else {
+            UnionPayLinkType.style.display = "none";
+        }
+    }
+
+    function addLine() {
+        var row = account.insertRow();
+        for (var j = 0; j < 2; j++) {
+            var col = row.insertCell();
+            switch (j) {
+                case 0:
+                    col.align = "center";
+                    col.innerHTML = "<input type=\"text\" name=\"SplitMerchantID\" style=\"width:95%\" value=\"\">";
+                    break;
+                case 1:
+                    col.align = "center";
+                    col.innerHTML = "<input type=\"text\" name=\"SplitAmount\" style=\"width:95%\" value=\"\">";
+                    break;
+            }
+
+        }
+
+        form1.button.disabled = "";
+    }
+
+</script>
+<body bgcolor='#FFFFFF' value='#000000' link='#0000FF' vlink='#0000FF' alink='#FF0000'>
+<form name="form1" action='Deposit.jsp' method="post">
+    <table>
+        <tr>
+            <td>����֧����Ч��</td>
+            <td><input name='orderTimeoutDate' value='20141019104901'/>��ȷ���룬ѡ��</td>
+        </tr>
+        <tr>
+            <td>���ױ��</td>
+            <td><input name='OrderNo' value='ON20140924003'/>����</td>
+        </tr>
+        <tr>
+        <tr>
+            <td>���׽��</td>
+            <td><input name='OrderAmount' value='2.00'/>����С�������λ����,*����</td>
+        </tr>
+        <tr>
+            <td>����˵��</td>
+            <td><input name='OrderDesc' value=''/>ѡ��</td>
+        </tr>
+
+        <tr>
+            <td>��������</td>
+            <td><input name='PaymentLinkType' value='1' onkeyup="CheckValue()"/>1��internet������� 2���ֻ��������
+                3:���ֵ���������� 4:���ܿͻ��ˣ�*����
+            </td>
+        </tr>
+        <tr>
+            <td>֪ͨ��ʽ</td>
+            <td><input name='NotifyType' value='0'/>0��URLҳ��֪ͨ 1��������֪ͨ��*����</td>
+        </tr>
+        <tr>
+            <td>֪ͨURL��ַ</td>
+            <td><input name='ResultNotifyURL' value='http://yourwebsite/appname/MerchantResult.jsp'/>*����</td>
+        </tr>
+        <tr>
+            <td>����</td>
+            <td><input name='MerchantRemarks' value=''/>������100���ַ���ѡ��</td>
+        </tr>
+        <tr>
+            <td>�����̻���</td>
+            <td><input name='ReceiveSubMerchantNo' value=''/>*����</td>
+        </tr>
+
+        <tr>
+            <td colspan="2">
+                <input type="submit">
+    </table>
+</form>
+<center>
+    <a href='Merchant.html'>���̻���ҳ</a></center>
+</body>
+</html>

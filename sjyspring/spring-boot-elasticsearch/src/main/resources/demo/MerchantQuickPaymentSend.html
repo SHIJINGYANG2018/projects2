@@ -1,0 +1,153 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>ũ������֧��ƽ̨-�̻��ӿڷ���-����K��֧���˵�����</title>
+</head>
+<body style="font-size: 14px;">
+<center>
+    ����K��֧���˵�����
+</center>
+<form id="form1" action='MerchantQuickPaymentSend.jsp' method="post">
+    <Label ID="lblMessage"></Label>
+    <br/>
+    <table>
+        <tr>
+            <td>���ױ��
+            </td>
+            <td>
+                <input name='txtOrderNo' value='ON201412230001'/>*����
+            </td>
+        </tr>
+        <tr>
+            <td>���ױ���
+            </td>
+            <td>
+                <input name='txtCurrencyCode' value='156'/>*����
+            </td>
+        </tr>
+        <tr>
+            <td>���׽��
+            </td>
+            <td>
+                <input name='txtOrderAmount' value='2.00'/>����С�������λ���֣�*����
+            </td>
+        </tr>
+        <tr>
+            <td>�����ѽ��
+            </td>
+            <td>
+                <input name='txtFee' value=''/>����С�������λ����,ѡ��
+            </td>
+        </tr>
+        <tr>
+            <td>��������
+            </td>
+            <td>
+                <input name='txtOrderDate' value='2014/12/23'/>��YYYY/MM/DD����*����
+            </td>
+        </tr>
+        <tr>
+            <td>����ʱ��
+            </td>
+            <td>
+                <input name='txtOrderTime' value='11:55:30'/>��HH:MM:SS����*����
+            </td>
+        </tr>
+        <tr>
+            <td>����
+            </td>
+            <td>
+                <input name='txtAccName' value='����'/>ѡ��
+            </td>
+        </tr>
+        <tr>
+            <td>֤������
+            </td>
+            <!--
+            <td>
+                <input name='txtCertificateType' value='I' />ѡ��
+            </td>
+             -->
+            <td>
+                <select name="txtCertificateType">
+                    <option Value="I">�������֤</option>
+                    <option Value="P">�й�����</option>
+                    <option Value="S">�������֤</option>
+                    <option Value="J">����֤</option>
+                    <option Value="K">���ڲ�</option>
+                    <option Value="T">��ʱ���֤</option>
+                    <option Value="F">�������</option>
+                    <option Value="D">�۰�ͨ��֤</option>
+                    <option Value="W">̨��ͨ��֤</option>
+                    <option Value="R">���ݸɲ�����֤</option>
+                    <option Value="B">��������֤</option>
+                    <option Value="A">��ְ�ɲ�����֤</option>
+                    <option Value="C">����ԺУѧԱ֤</option>
+                    <option Value="E">��װ�������֤</option>
+                    <option Value="G">����֤</option>
+                    <option Value="H">��ְ�ɲ�֤</option>
+                    <option Value="L">����ʿ��֤</option>
+                    <option Value="M">�侯ʿ��֤</option>
+                    <option Value="U">����֤��</option>
+                </select>
+                Ŀǰֻ֧�ֹ������֤,ѡ��
+            </td>
+        </tr>
+        <tr>
+            <td>֤������
+            </td>
+            <td>
+                <input name='txtCertificateID' value=''/>ѡ��
+            </td>
+        </tr>
+        <tr>
+            <td>����Ч��
+            </td>
+            <td>
+                <input name='txtExpDate' value='0715'/>ѡ��
+            </td>
+        </tr>
+        <tr>
+            <td>���ǿ�CVV2
+            </td>
+            <td>
+                <input name='txtCVV2' value='123'/>ѡ��
+            </td>
+        </tr>
+        <tr>
+            <td>������֤��
+            </td>
+            <td>
+                <input name='txtVerifyCode' value='123456'/>ѡ��
+            </td>
+        </tr>
+        <tr>
+            <td>֧���˻�����
+            </td>
+            <td>
+                <input name='txtPaymentType' value='1'/>1��ũ�п�֧�� 3��ũ�д��ǿ�֧�� A:֧����ʽ�ϲ� *����
+            </td>
+        </tr>
+        <tr>
+            <td>��������
+            </td>
+            <td>
+                <input name='txtPaymentLinkType' value='1'/>1��internet������� 2���ֻ�������� *����
+            </td>
+        </tr>
+        <tr>
+            <td>MerchantRemarks</td>
+            <td>
+                <input name='txtMerchantRemarks' value=''/>ѡ��
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <input type="submit" value="�ύҳ������"/>
+
+            </td>
+        </tr>
+    </table>
+</form>
+<a href='Merchant.html'>���̻���ҳ</a>
+</body>
+</html>

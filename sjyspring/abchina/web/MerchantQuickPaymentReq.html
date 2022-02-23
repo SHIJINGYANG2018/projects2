@@ -1,0 +1,205 @@
+<html>
+<head>
+    <title>ũ������֧��ƽ̨-�̻��ӿڷ���-����K��֧��֧������</title>
+</head>
+<body style="font-size: 14px;">
+<center>
+    ����K��֧��֧������
+</center>
+<form id="form1" action='MerchantQuickPaymentReq.jsp' method="post">
+    <Label ID="lblMessage"></Label>
+    <br/>
+    <table>
+        <tr>
+            <td>
+                ��������
+            </td>
+            <td style="width: 158px">
+                <select name="txtPayTypeID">
+                    <option Value="ImmediatePay" Selected="True">ֱ��֧��</option>
+                    <option Value="DividedPay">����֧��</option>
+                </select>*����
+            </td>
+        </tr>
+        <tr>
+            <td>����֧����Ч��
+            </td>
+            <td>
+                <input name='txtorderTimeoutDate' value=''/>��ȷ���룬ѡ��
+            </td>
+        </tr>
+        <tr>
+            <td>���ױ��
+            </td>
+            <td>
+                <input name='txtPaymentRequestNo' value='ON20160322001'/>*����
+            </td>
+        </tr>
+        <tr>
+            <td>���ױ���
+            </td>
+            <td>
+                <input name='txtCurrencyCode' value='156'/>156:�����,*����
+            </td>
+        </tr>
+        <tr>
+            <td>���׽��
+            </td>
+            <td>
+                <input name='txtPaymentRequestAmount' value='2.00'/>����С�������λ����,*����
+            </td>
+        </tr>
+        <tr>
+            <td>��������ʱ��
+            </td>
+            <td>
+                <input name='txtExpiredDate' value=''/>��λ:�죬*ѡ��
+            </td>
+        </tr>
+        <tr>
+            <td>
+                ����˵��
+            </td>
+            <td>
+                <input name='txtOrderDesc' value=''/></td>
+        </tr>
+        <tr>
+            <td>
+                ��������
+            </td>
+            <td>
+                <input name='txtOrderDate' value='2016/03/22'/>��YYYY/MM/DD��*����
+            </td>
+        </tr>
+        <tr>
+            <td>
+                ����ʱ��
+            </td>
+            <td>
+                <input name='txtOrderTime' value='11:55:30'/>��HH:MM:SS��*����
+            </td>
+        </tr>
+        <tr>
+            <td>�ջ���ַ
+            </td>
+            <td>
+                <input name='txtReceiverAddress' value='����'/>ѡ��
+            </td>
+        </tr>
+        <tr>
+            <td>�ͻ�����IP
+            </td>
+            <td>
+                <input name='txtBuyIP' value=''/>ѡ��
+            </td>
+        </tr>
+        <tr>
+            <td>֧���˻�/�˻�����
+            </td>
+            <td>
+                <input name='txtPaymentAcctNo' value='6228480010000106517'/>*���䣬6-30λ��ĸ�������
+            </td>
+        </tr>
+        <tr>
+            <td>�ֻ��ź���λ
+            </td>
+            <td>
+                <input name='txtMobilePhone' value='7698'/>*����
+            </td>
+        </tr>
+        <tr>
+            <td>��Ʒ����
+            </td>
+            <td>
+                <input name='txtCommodityType' value='0101'/></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>
+                <br>0101:֧���˻���ֵ
+                <br>0201:������,0202:��ͳ��,0203:ʵ����
+                <br>0301:����ת��,0302:����ת��
+                <br>0401:ˮ��,0402:���,0403:ú����,0404:���ߵ��ӷ�,0405:ͨѶ��,0406:��ҵ��,0407:���շ�,0408:��������,0409:˰��,0410:ѧ��,0499:����
+                <br>0501:����,0502:��Ʋ�Ʒ,0599:����, *����
+            </td>
+        </tr>
+        <tr>
+            <td>���ڱ�ʶ
+            </td>
+            <td>
+                <input name='txtInstallment' value='0'/>1�����ڣ�0�������ڡ�*����
+            </td>
+        </tr>
+        <tr>
+            <td>���ڴ���
+            </td>
+            <td>
+                <input name='txtProjectID' value=''/>����ʱ����
+            </td>
+        </tr>
+        <tr>
+            <td>��������
+            </td>
+            <td>
+                <input name='txtPeriod' value=''/>����ʱ����
+            </td>
+        </tr>
+        <tr>
+            <td>֧���˻�����
+            </td>
+            <td>
+                <input name='txtPaymentType' value='1'/>1��ũ�п�֧�� 3��ũ�д��ǿ�֧�� *����
+            </td>
+        </tr>
+        <tr>
+            <td>��������
+            </td>
+            <td>
+                <input name='txtPaymentLinkType' value='1'/>1��internet������� 2���ֻ�������� *����
+            </td>
+        </tr>
+        <tr>
+            <td>�տ�˺�
+            </td>
+            <td>
+                <input name='txtReceiveAccount' value=''/>ѡ��
+            </td>
+        </tr>
+        <tr>
+            <td>�տ����
+            </td>
+            <td>
+                <input name='txtReceiveAccName' value=''/>ѡ��
+            </td>
+        </tr>
+        <tr>
+            <td>����
+            </td>
+            <td>
+                <input name='txtMerchantRemarks' value=''/>������100���ַ���ѡ��
+            </td>
+        </tr>
+        <tr>
+            <td>�����Ƿ����
+            </td>
+            <td>
+                <input name='txtIsBreakAccount' value='0'/>0:��1:�ǣ�*����
+            </td>
+        </tr>
+        <tr>
+            <td>����ģ����</td>
+            <td>
+                <input name='txtSplitAccTemplate' value=''/>ѡ��
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <input type="submit" value="�ύҳ������"/>
+
+            </td>
+        </tr>
+    </table>
+</form>
+<a href='Merchant.html'>���̻���ҳ</a>
+</body>
+</html>

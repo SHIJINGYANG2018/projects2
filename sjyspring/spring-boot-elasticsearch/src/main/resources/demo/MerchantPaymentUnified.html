@@ -1,0 +1,215 @@
+<html>
+<head>
+    <title>ũ������֧��ƽ̨-�̻��ӿڷ���-΢��֧������</title>
+</head>
+<script language="javascript" type="text/javascript">
+
+
+    function SelectedIndexChanged() {
+        var paytypeid = document.getElementById("PayTypeID").value;
+        if (paytypeid == "ImmediatePay") {
+            installmentCode.style.display = "none";
+            installmentNum.style.display = "none";
+        } else if (paytypeid == "PreAuthPay") {
+            installmentCode.style.display = "none";
+            installmentNum.style.display = "none";
+        } else if (paytypeid == "DividedPay") {
+            installmentCode.style.display = "inline";
+            installmentNum.style.display = "inline";
+
+        }
+    }
+
+    function addLine() {
+        var row = account.insertRow();
+        for (var j = 0; j < 2; j++) {
+            var col = row.insertCell();
+            switch (j) {
+                case 0:
+                    col.align = "center";
+                    col.innerHTML = "<input type=\"text\" name=\"SplitMerchantID\" style=\"width:95%\" value=\"\">";
+                    break;
+                case 1:
+                    col.align = "center";
+                    col.innerHTML = "<input type=\"text\" name=\"SplitAmount\" style=\"width:95%\" value=\"\">";
+                    break;
+            }
+
+        }
+
+        form1.button.disabled = "";
+    }
+
+</script>
+<body bgcolor='#FFFFFF' value='#000000' link='#0000FF' vlink='#0000FF' alink='#FF0000'>
+<form name="form1" action='MerchantPaymentUnified.jsp' method="post">
+    <table>
+        <tr>
+            <td>��������</td>
+            <td>
+                <select name="PayTypeID" onclick="SelectedIndexChanged()">
+                    <option value="NATIVE">ɨ��֧��</option>
+                    <option value="JSAPI">���ںţ�С����֧��</option>
+                    <option value="APP">app֧��</option>
+                    <option value="MICROPAY">ˢ��֧��</option>
+                    <option value="MWEB">H5֧��</option>
+                </select>*����
+            <td>
+        </tr>
+        <tr>
+            <td>��������</td>
+            <td><input name='OrderDate' value='2017/03/01'>��YYYY/MM/DD��</td>
+        </tr>
+        <tr>
+            <td>����ʱ��</td>
+            <td><input name='OrderTime' value='11:55:30'>��HH:MM:SS��</td>
+        </tr>
+        <tr>
+            <td>����֧����Ч��</td>
+            <td><input name='orderTimeoutDate' value='20171231000000'/>��ȷ���룬ѡ��</td>
+        </tr>
+        <tr>
+            <td>���ױ��</td>
+            <td><input name='OrderNo' value='ON20170301001'/>����</td>
+        </tr>
+        <tr>
+        <tr>
+            <td>���ױ���</td>
+            <td><input name='CurrencyCode' value='156'/>156:�����,*����</td>
+        </tr>
+        <tr>
+            <td>���׽��</td>
+            <td><input name='PaymentRequestAmount' value='1.00'/>����С�������λ����,*����</td>
+        </tr>
+        <tr>
+            <td>�����ѽ��</td>
+            <td><input name='Fee' value=''/>����С�������λ����,ѡ��</td>
+        </tr>
+        <tr>
+            <td>ָ�������˻�</td>
+            <td><input name='AccountNo' value=''/>ѡ��,��������Ϊ�����ںţ�С����֧����ʱ���䣬�������̻��Ĺ��ں�APPID����Ӧ΢��ͳһ�µ��ӿ��е�sub_appid��
+                ��������Ϊ"app֧��"ʱ���䣬�������̻���Ӧ��APPID����Ӧ΢��ͳһ�µ��ӿ��е�sub_appid����������Ϊ��ˢ��֧����ʱ���䣬������Ȩ��auth_code
+            </td>
+        </tr>
+        <tr>
+            <td>�û������̻�appid�µ�Ψһ��ʶ</td>
+            <td><input name='OpenID' value=''/>ѡ��,��������Ϊ"���ںţ�С����֧��"ʱ���䣬��Ӧ΢��ͳһ�µ��ӿ��е�sub_openid</td>
+        </tr>
+        <tr>
+            <td>����˵��</td>
+            <td><input name='OrderDesc' value=''/>ѡ��,֧���˻�����Ϊ"8:΢��֧��"ʱ����</td>
+        </tr>
+        <tr>
+            <td>�ջ���ַ</td>
+            <td><input name='ReceiverAddress' value='����'/>ѡ��</td>
+        </tr>
+        <tr>
+            <td>���ڱ�ʶ</td>
+            <td><input name='InstallmentMark' value='0'/>1�����ڣ�0�������ڡ�*����</td>
+        </tr>
+        <tr id="installmentCode" style="display: none;">
+            <td>���ڴ���</td>
+            <td><input name='InstallmentCode' value=''/> ����ʱ����</td>
+        </tr>
+        <tr id="installmentNum" style="display: none;">
+            <td>��������</td>
+            <td><input name='InstallmentNum' value=''/>0-99,����ʱ����</td>
+        </tr>
+        <tr>
+            <td>��Ʒ����</td>
+            <td><input name='CommodityType' value='0101'/>
+            </td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>
+                <br>0101:֧���˻���ֵ
+                <br>0201:������,0202:��ͳ��,0203:ʵ����
+                <br>0301:����ת��,0302:����ת��
+                <br>0401:ˮ��,0402:���,0403:ú����,0404:���ߵ��ӷ�,0405:ͨѶ��,0406:��ҵ��,0407:���շ�,0408:��������,0409:˰��,0410:ѧ��,0499:����
+                <br>0501:����,0502:��Ʋ�Ʒ,0599:����, *����
+            </td>
+        </tr>
+        <tr>
+            <td>�ͻ�����IP</td>
+            <td><input name='BuyIP' value=''/>ѡ��</td>
+        </tr>
+        <tr>
+            <td>��������ʱ��</td>
+            <td><input name='ExpiredDate' value='30'/>��λ:�죬ѡ��</td>
+        </tr>
+        <tr>
+            <td>֧����ʽ</td>
+            <td><input name='PaymentType' value='8'/>8��΢��֧�� *����</td>
+        </tr>
+        <tr>
+            <td>��������</td>
+            <td><input name='PaymentLinkType' value='1' onkeyup="CheckValue()"/>1��internet������� 2���ֻ��������
+                3:���ֵ���������� 4:���ܿͻ��� 5���������� *����
+            </td>
+        </tr>
+        <tr>
+            <td>֪ͨ��ʽ</td>
+            <td><input name='NotifyType' value='0'/>0��URLҳ��֪ͨ 1��������֪ͨ��*����</td>
+        </tr>
+        <tr>
+            <td>֪ͨURL��ַ</td>
+            <td><input name='ResultNotifyURL' value='http://yourwebsite/appname/MerchantResult.jsp'/>*����</td>
+        </tr>
+        <tr>
+            <td>����</td>
+            <td><input name='MerchantRemarks' value=''/>������100���ַ���ѡ��</td>
+        </tr>
+        <tr>
+            <td>���̻�ģʽ</td>
+            <td><input name='MerModelFlag' value=''/>ѡ�� 0:��ͨģʽ 1:���̻�ģʽ</td>
+        </tr>
+        <tr>
+            <td>�����̻����</td>
+            <td><input name='SubMerchantID' value=''/>ѡ��</td>
+        </tr>
+
+        <tr>
+            <td>���ƴ��ǿ�</td>
+            <td><input name='LimitPay' value='no_credit'/>ѡ��</td>
+        </tr>
+        <tr>
+            <td>��������</td>
+            <td><input name='H5SceneType' value='Wap'/>ѡ��</td>
+        </tr>
+        <tr>
+            <td>����URL</td>
+            <td><input name='H5SceneUrl' value='https://pay.qq.com'/>ѡ��</td>
+        </tr>
+        <tr>
+            <td>��������</td>
+            <td><input name='H5SceneName' value='��Ѷ��ֵ'/>ѡ��</td>
+        </tr>
+        <tr>
+            <td>�����Ƿ�֧��������̻�����</td>
+            <td><input name='IsBreakAccount' value='0'/>0:��1:�ǣ�*����</td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <table border="1" style="font-size: 12px;" width="50%" id="account">
+                    <tr>
+                        <td width="12%" align="center">�����̻����</td>
+                        <td width="12%" align="center">���˽��</td>
+                    <tr>
+                </table>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <input type='button' value='����' name="add" onclick="addLine()"></td>
+
+        </tr>
+        <tr>
+            <td colspan="2">
+                <input type="submit">
+    </table>
+</form>
+<center>
+    <a href='MerchantUnified.html'>���̻���ҳ</a></center>
+</body>
+</html>

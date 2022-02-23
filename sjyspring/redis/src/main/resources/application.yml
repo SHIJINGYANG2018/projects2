@@ -1,0 +1,10 @@
+spring:
+  redis:
+    host: 172.31.67.104
+    database: 15
+    port: 6363
+    jedis:
+      pool:
+        max-idle: 30
+        max-wait: 10000
+    password: wxf123456

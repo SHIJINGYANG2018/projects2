@@ -1,0 +1,136 @@
+<html>
+<head>
+    <title>ũ������֧��ƽ̨-�̻��ӿڷ���-�����̻���Ϣͬ��</title>
+</head>
+<script language="javascript">
+    function formatIndex(index) {
+        if (index < 10)
+            return "00" + index;
+        else if (index >= 10 && index < 100)
+            return "0" + index;
+        else
+            return index;
+    }
+
+    function submitFun() {
+        form1.submit();
+    }
+</script>
+<body style="font-size: 14px;">
+<center>�����̻���Ϣͬ��</center>
+<form id="form1" action='RegSubMerInfo.jsp' method="post">
+    <Label ID="lblMessage"></Label>
+    <br/>
+    <table>
+        <tr>
+            <td>�����̻����</td>
+            <td><input name='txtSubMerId' value='103881920000002'/>*����</td>
+        </tr>
+        <tr>
+            <td>�����̻�����</td>
+            <td><input name='txtSubMerName' value='����'/>*����</td>
+        </tr>
+        <tr>
+            <td>�����̻�����</td>
+            <td><input name='txtSubMerType' value='1'/>*���� 1��Ȼ�� 2��ҵ�̻� 3���幤�̻�</td>
+        </tr>
+        <!--
+        <tr>
+            <td>�����̻�״̬</td>
+            <td><input name='txtStatus' value='1' />*���� 0:�ر� 1:����</td>
+        </tr>
+         -->
+        <tr>
+            <td>���������˻���������</td>
+            <td><input name='txtContactName' value='����'/>*����</td>
+        </tr>
+        <tr>
+            <td>���������˻�����֤������</td>
+            <td>
+                <select name="txtCertificateType">
+                    <option Value="I">�������֤</option>
+                    <option Value="P">����</option>
+                    <option Value="G">����֤</option>
+                    <option Value="U">����֤��</option>
+                </select>
+                *����
+            </td>
+        </tr>
+        <tr>
+            <td>���������˻�����֤�����</td>
+            <td><input name='txtCertificateNo' value=''/>*����</td>
+        </tr>
+
+        <tr>
+            <td>��ҵ����</td>
+            <td><input name='txtMerchantName' value='�����̵�'/>��ҵ�̻�����</td>
+        </tr>
+        <tr>
+            <td>��ҵ֤������ <br></td>
+            <td>
+                <select name="txtMerCertificateType">
+                    <option Value="U">Ӫҵִ��</option>
+                    <option Value="Y">��֯��������֤</option>
+                    <option Value="V">ͳһ������ô���</option>
+                </select>��ҵ�̻�����
+        </tr>
+        <tr>
+            <td>��ҵ֤�����</td>
+            <td><input name='txtMerCertificateNum' value=''/>��ҵ�̻�����</td>
+        </tr>
+
+        <tr>
+            <td>�տ��</td>
+            <td><input name='txtReceiveAccountName' value='����'/>*����</td>
+        </tr>
+        <tr>
+            <td>�տ��˺�</td>
+            <td><input name='txtReceiveAccount' value='6228888888888888888'/>*����</td>
+        </tr>
+        <tr>
+            <td>�տ�����</td>
+            <td><input name='txtReceiveBankName' value='�й�ũҵ���йɷ����޹�˾'/>*����</td>
+        </tr>
+
+        <tr>
+            <td>����Ԥ���ֻ���</td>
+            <td><input name='txtBankMobileNum' value='138888888888'/>*����</td>
+        </tr>
+        <tr>
+            <td>�տ��˻�����</td>
+            <td><input name='txtReceiveAccountType' value='401'/>*���� 401-��ǿ� 601-֧Ʊ��</td>
+        </tr>
+        <tr>
+            <td>��ַ</td>
+            <td><input name='txtAddress' value=''/>ѡ��</td>
+        </tr>
+
+        <tr>
+            <td>������ǩ������Э��</td>
+            <td><input name='txtAnnounce' value='1'/>1 ������ *����</td>
+        </tr>
+
+        <tr>
+            <td>���֪ͨ��ַ</td>
+            <td><input name='txtNotifyUrl' value=''/>*����</td>
+        </tr>
+
+        <tr>
+            <td>�̻���������ϵ�绰</td>
+            <td><input name='txtMerMobilePhoneNum' value=''/>*����</td>
+        </tr>
+
+        <tr>
+            <td>��ע</td>
+            <td><input name='txtRemark' value=''/>ѡ��</td>
+        </tr>
+
+        <tr>
+            <td colspan="2">
+                <input type='button' value='�ύ' name="payment" onclick="submitFun()"></td>
+        </tr>
+    </table>
+</form>
+<a href='MerchantUnified.html'>���̻���ҳ</a>
+</body>
+</html>
